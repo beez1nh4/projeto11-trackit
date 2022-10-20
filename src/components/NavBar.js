@@ -13,8 +13,8 @@ export default function NavBar() {
 }
 
 const NavBarItem = styled.div`
-    height: 70px;
     width: 100%;
+    height: 70px;
     position: fixed;
     top: 0px;
     background: #126BA5;
