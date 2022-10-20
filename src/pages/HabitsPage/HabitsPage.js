@@ -22,6 +22,10 @@ const PageContainer = styled.div`
     background: #E5E5E5;
     margin-top: 70px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
     & p{
         font-family: 'Lexend Deca';
         font-style: normal;
@@ -37,6 +41,9 @@ const TitleItem = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    margin-bottom: 28px;
     & p {
         font-family: 'Lexend Deca';
         font-style: normal;

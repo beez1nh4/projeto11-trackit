@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	box-sizing: border-box;
 }
 ol, ul {
 	list-style: none;
@@ -56,7 +57,7 @@ a:visited{
 	text-decoration: none;
 }
 
-box-sizing: border-box;
+
 `
 
 export default GlobalStyle;
