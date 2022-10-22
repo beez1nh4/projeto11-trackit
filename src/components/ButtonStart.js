@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { buttonLoginColor, white } from "../constants/colors";
+import { basicColor, white } from "../constants/colors";
 import { baseFont } from "../constants/fonts"
 
 export const ButtonStart = styled.button`
     width: 303px;
     height: 45px;
-    background: ${buttonLoginColor};
+    background: ${basicColor};
     border-radius: 4.63636px;
     border: none;
     font-family: ${baseFont};

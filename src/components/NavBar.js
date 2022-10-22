@@ -1,4 +1,4 @@
-import track from "../assets/images/TrackIt.png"
+import { logoFont } from "../constants/fonts"
 import styled from "styled-components"
 export default function NavBar() {
     
@@ -28,7 +28,7 @@ const Logo = styled.div`
     width: 97px;
     height: 49px;
     margin-left: 18px;
-    font-family: 'Playball';
+    font-family: ${logoFont};
     font-weight: 400;
     font-size: 38.982px;
     line-height: 49px;

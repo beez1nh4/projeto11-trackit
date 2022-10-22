@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { buttonLoginColor } from "../constants/colors";
+import { basicColor } from "../constants/colors";
 import { baseFont } from "../constants/fonts";
 
 export const LinkToClick = styled.div`
@@ -14,7 +14,7 @@ export const LinkToClick = styled.div`
         text-align: center;
         text-decoration-line: underline;
 
-        color: ${buttonLoginColor};
+        color: ${basicColor};
 
     }
 `

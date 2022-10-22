@@ -1,5 +1,6 @@
 import NavBar from "../../components/NavBar"
 import styled from "styled-components"
+import Menu from "../../components/Menu"
 
 export default function HabitsPage() {
     
@@ -13,7 +14,7 @@ export default function HabitsPage() {
             </TitleItem>
             <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </PageContainer>
-            
+            <Menu/>
         </>
     )
 }
