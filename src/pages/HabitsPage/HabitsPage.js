@@ -1,6 +1,8 @@
 import NavBar from "../../components/NavBar"
 import styled from "styled-components"
 import Menu from "../../components/Menu"
+import HabitCardOpen from "../../components/HabitCardOpen"
+import { baseFont } from "../../constants/fonts"
 
 export default function HabitsPage() {
     
@@ -12,7 +14,11 @@ export default function HabitsPage() {
             <p>Meus hábitos</p>
             <button>+</button>
             </TitleItem>
+            <HabitCardOpen></HabitCardOpen>
+            <HabitCardOpen></HabitCardOpen>
+            <HabitCardOpen></HabitCardOpen>
             <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+            
             </PageContainer>
             <Menu/>
         </>
@@ -22,13 +28,14 @@ export default function HabitsPage() {
 const PageContainer = styled.div`
     background: #E5E5E5;
     margin-top: 70px;
+    margin-bottom: 70px;
     width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 
     & p{
-        font-family: 'Lexend Deca';
+        font-family: ${baseFont};
         font-style: normal;
         font-weight: 400;
         font-size: 17.976px;
@@ -46,7 +53,7 @@ const TitleItem = styled.div`
     margin-top: 28px;
     margin-bottom: 28px;
     & p {
-        font-family: 'Lexend Deca';
+        font-family: ${baseFont};
         font-style: normal;
         font-weight: 400;
         font-size: 22.976px;
@@ -61,7 +68,7 @@ const TitleItem = styled.div`
         border-radius: 4.63636px;
         margin-right: 18px;
 
-        font-family: 'Lexend Deca';
+        font-family: ${baseFont};
         font-style: normal;
         font-weight: 400;
         font-size: 26.976px;
