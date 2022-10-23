@@ -4,14 +4,34 @@ import { useState } from "react"
 import { Input } from "../../components/Input"
 import { ButtonStart } from "../../components/ButtonStart"
 import { LinkToClick } from "../../components/LinkToClick"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export default function SignUpPage(){
-    const [form, setForm] = useState({ name: "", email: "", image: "", password: "" })
+  const navigate = useNavigate()
+  const [form, setForm] = useState({ email: "", name: "",  image: "", password: "" })
 
   function fillForm(e) {
     const {name, value} = e.target
     setForm({...form, [name]: value})
   }
+
+  function signUp() {
+    const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
+    console.log(form)
+    const body = {...form}
+
+    const promise = axios.post(URL, body)
+
+    promise.then((res) => {
+      navigate("/")
+    })
+
+    promise.catch((err) => {
+      alert(err.response.data.message)
+    })
+  }
+
     return(
         <>
             <IntroPageContainer>
@@ -35,17 +55,17 @@ export default function SignUpPage(){
             name="name"
             value={form.name}
             onChange={fillForm}
-            type="name"
+            type="text"
             placeholder="nome"
             />
             <Input
-            name="photo"
-            value={form.photo}
+            name="image"
+            value={form.image}
             onChange={fillForm}
-            type="photo"
+            type="text"
             placeholder="foto"
             />
-            <ButtonStart>Cadastrar</ButtonStart>
+            <ButtonStart onClick={signUp}>Cadastrar</ButtonStart>
             <LinkToClick>
             <p>Já tem uma conta? Faça login!</p>
             </LinkToClick>
