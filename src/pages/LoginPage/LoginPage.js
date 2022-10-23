@@ -5,6 +5,7 @@ import { Input } from "../../components/Input"
 import { IntroPageContainer } from "../../components/IntroPageContainer"
 import { LinkToClick } from "../../components/LinkToClick"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -18,6 +19,20 @@ export default function LoginPage() {
     function navigateSignUp(){
         navigate("/cadastro")
     }
+
+    function login() {
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
+    
+        const promise = axios.post(URL, form)
+    
+        promise.then((res) => {
+          /* setToken(res.data.token) */
+          navigate("/habitos")
+        })
+    
+        promise.catch((err) => alert(err.response.data.message))
+    
+      }
     return(
         <>
         <IntroPageContainer>
@@ -36,7 +51,7 @@ export default function LoginPage() {
         type="password"
         placeholder="senha"
         />
-        <ButtonStart>Entrar</ButtonStart>
+        <ButtonStart onClick={login}>Entrar</ButtonStart>
         <LinkToClick onClick={navigateSignUp}>
             <p>Não tem uma conta? Cadastre-se!</p>
         </LinkToClick>
