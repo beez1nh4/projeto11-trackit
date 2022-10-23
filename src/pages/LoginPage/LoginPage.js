@@ -16,9 +16,10 @@ export default function LoginPage() {
     const {token, setToken} = useAuth()
     const [load, setLoad] = useState(false)
     function fillForm(e) {
+        if (!load){
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
-      }
+      }}
 
     function navigateSignUp(){
         navigate("/cadastro")
@@ -52,6 +53,7 @@ export default function LoginPage() {
         onChange={fillForm}
         type="text"
         placeholder="email"
+        disabled= {load && true}
         />
         <Input
         name="password"
@@ -59,6 +61,7 @@ export default function LoginPage() {
         onChange={fillForm}
         type="password"
         placeholder="senha"
+        disabled= {load && true}
         />
         <ButtonStart onClick={login}>{load ?
         <ThreeDots 

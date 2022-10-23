@@ -17,10 +17,11 @@ export default function SignUpPage(){
   const [load, setLoad] = useState(false)
 
   function fillForm(e) {
-    const {name, value} = e.target
+    if (!load)
+    {const {name, value} = e.target
     setForm({...form, [name]: value})
     setImage(form.image)
-    console.log(form.image)
+    console.log(form.image)}
   }
 
   function navigateLogin(){
@@ -56,6 +57,7 @@ export default function SignUpPage(){
             onChange={fillForm}
             type="text"
             placeholder="email"
+            disabled= {load && true}
             />
             <Input
             name="password"
@@ -63,6 +65,7 @@ export default function SignUpPage(){
             onChange={fillForm}
             type="password"
             placeholder="senha"
+            disabled= {load && true}
             />
             <Input
             name="name"
@@ -70,6 +73,7 @@ export default function SignUpPage(){
             onChange={fillForm}
             type="text"
             placeholder="nome"
+            disabled= {load && true}
             />
             <Input
             name="image"
@@ -77,6 +81,7 @@ export default function SignUpPage(){
             onChange={fillForm}
             type="text"
             placeholder="foto"
+            disabled= {load && true}
             />
             <ButtonStart onClick={signUp}>
             {load ?
