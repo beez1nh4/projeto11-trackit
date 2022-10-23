@@ -5,8 +5,12 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import HabitsPage from "./pages/HabitsPage/HabitsPage";
 import TodayPage from "./pages/TodayPage/TodayPage"
 import HistoryPage from "./pages/HistoryPage/HistoryPage"
+import React from "react";
+import { AuthContext } from "./providers/auth";
 
 function App() {
+  const {image} = React.useContext(AuthContext)
+  console.log(image)
   return (
     <>
     <GlobalStyle/>

@@ -1,16 +1,20 @@
 import { logoFont } from "../constants/fonts"
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../providers/auth"
+
 export default function NavBar() {
     const navigate = useNavigate()
+    const {image} = useAuth()
     function navigateHabitsPage(){
         navigate("/habitos")
     }
+    
     return(
         <>
             <NavBarItem>
                 <Logo onClick={navigateHabitsPage}>TrackIt</Logo>
-                <User src="https://image.shutterstock.com/image-photo/pure-youth-crazy-english-cocker-260nw-1424153078.jpg" alt="user" />
+                <User src={image} alt="user" />
             </NavBarItem>
         </>
     )

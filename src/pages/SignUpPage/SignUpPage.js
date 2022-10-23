@@ -5,15 +5,19 @@ import { Input } from "../../components/Input"
 import { ButtonStart } from "../../components/ButtonStart"
 import { LinkToClick } from "../../components/LinkToClick"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import axios from "axios" 
+import { useAuth } from "../../providers/auth"
 
 export default function SignUpPage(){
   const navigate = useNavigate()
   const [form, setForm] = useState({ email: "", name: "",  image: "", password: "" })
+  const {setImage} = useAuth()
 
   function fillForm(e) {
     const {name, value} = e.target
     setForm({...form, [name]: value})
+    setImage(form.image)
+    console.log(form.image)
   }
 
   function navigateLogin(){
