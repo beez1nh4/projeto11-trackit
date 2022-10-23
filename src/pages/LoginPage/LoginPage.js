@@ -6,11 +6,15 @@ import { IntroPageContainer } from "../../components/IntroPageContainer"
 import { LinkToClick } from "../../components/LinkToClick"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { useAuth } from "../../providers/auth"
+import { ThreeDots } from "react-loader-spinner"
+import { white } from "../../constants/colors"
 
 export default function LoginPage() {
     const navigate = useNavigate()
     const [form, setForm] = useState({ email: "", password: "" })
-
+    const {token, setToken} = useAuth()
+    const [load, setLoad] = useState(false)
     function fillForm(e) {
         const { name, value } = e.target
         setForm({ ...form, [name]: value })
@@ -24,13 +28,18 @@ export default function LoginPage() {
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
     
         const promise = axios.post(URL, form)
-    
+        setLoad(true)
         promise.then((res) => {
-          /* setToken(res.data.token) */
+          setToken(res.data.token)
+          console.log(res.data.token)
+          setLoad(false)
           navigate("/habitos")
         })
     
-        promise.catch((err) => alert(err.response.data.message))
+        promise.catch((err) => {
+          alert(err.response.data.message)
+          setLoad(false)
+        })
     
       }
     return(
@@ -51,7 +60,20 @@ export default function LoginPage() {
         type="password"
         placeholder="senha"
         />
-        <ButtonStart onClick={login}>Entrar</ButtonStart>
+        <ButtonStart onClick={login}>{load ?
+        <ThreeDots 
+        height="51" 
+        width="51" 
+        radius="9"
+        color={white} 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+         />
+        :
+        "Entrar"
+        }</ButtonStart>
         <LinkToClick onClick={navigateSignUp}>
             <p>Não tem uma conta? Cadastre-se!</p>
         </LinkToClick>

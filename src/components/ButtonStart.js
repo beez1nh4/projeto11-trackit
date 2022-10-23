@@ -16,4 +16,7 @@ export const ButtonStart = styled.button`
     text-align: center;
     color: ${white};
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
