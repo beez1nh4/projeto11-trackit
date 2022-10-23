@@ -1,12 +1,19 @@
 import styled from "styled-components"
 import { baseFont } from "../constants/fonts"
 import { borderColor, white , unclickedColor} from "../constants/colors"
+import { useAuth } from "../providers/auth"
 
-export default function ButtonDay({letter}) {
+export default function ButtonDay({letter, index}) {
+    const {days, setDays} = useAuth()
+    function fillDays(i){
+        setDays([...days, i])
+        console.log([...days, i]) 
+    }
+
     return (
-        <>
-        <ButtonDayComponent>{letter}</ButtonDayComponent>
-        </>
+        
+        <ButtonDayComponent onClick={() => fillDays(index)} >{letter}</ButtonDayComponent>
+        
     )
 }
 

@@ -2,22 +2,57 @@ import styled from "styled-components";
 import { white, unclickedColor, inputText, basicColor} from "../constants/colors";
 import { baseFont } from "../constants/fonts";
 import { daysInitials } from "../constants/days";
+import { useState } from "react";
+import axios from "axios";
 import ButtonDay from "./ButtonDay";
+import { useAuth } from "../providers/auth";
 
 export default function HabitCardOpen() {
+    const [form, setForm] = useState({ name: "" })
+    const [load, setLoad] = useState(false)
+    const {days} = useAuth()
+    function fillForm(e) {
+        if (!load){
+        const { name, value } = e.target
+        setForm({ ...form, [name]: value })
+      }}
+
+    function saveHabit() {
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        const body = {...form, days}
+        const promise = axios.post(URL, body)
+        setLoad(true)
+        promise.then((res) => {
+          console.log(res.data.id)
+          setLoad(false)
+        })
+    
+        promise.catch((err) => {
+          alert(err.response.data.message)
+          setLoad(false)
+        })
+    
+      }
     
     return(
         <>
             <CardContainer>
-            <InputHabit placeholder="nome do hábito"></InputHabit>
+            <InputHabit 
+            placeholder="nome do hábito"
+            name="habit"
+            value={form.habit}
+            onChange={fillForm}
+            type="text"
+            disabled= {load && true}
+            ></InputHabit>
             <ButtonsDays>
             {daysInitials.map((d, i) => (
-                    <ButtonDay letter={d} key={i}/>
+                    <ButtonDay letter={d} index={i} key={i}/>
                 ))}
             </ButtonsDays>
             <AlignButtons>
                 <p>Cancelar</p>
-                <button>Salvar</button>
+                <button onClick={saveHabit}>Salvar</button>
             </AlignButtons>
             </CardContainer>
         </>

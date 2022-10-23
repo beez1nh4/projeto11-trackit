@@ -3,22 +3,24 @@ import styled from "styled-components"
 import Menu from "../../components/Menu"
 import HabitCardOpen from "../../components/HabitCardOpen"
 import { baseFont } from "../../constants/fonts"
+import { useAuth } from "../../providers/auth"
 
 export default function HabitsPage() {
-    
+    const {openCard, setOpenCard} = useAuth()
+
+    function openHabitCard(){
+        setOpenCard(true)
+    }
     return (
         <>
             <NavBar/>
             <PageContainer>
             <TitleItem>
             <p>Meus hábitos</p>
-            <button>+</button>
+            <button onClick={openHabitCard}>+</button>
             </TitleItem>
-            <HabitCardOpen></HabitCardOpen>
-            <HabitCardOpen></HabitCardOpen>
-            <HabitCardOpen></HabitCardOpen>
             <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-            
+            {openCard && <HabitCardOpen/>}
             </PageContainer>
             <Menu/>
         </>
