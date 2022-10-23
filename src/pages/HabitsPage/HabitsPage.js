@@ -5,13 +5,38 @@ import HabitCardOpen from "../../components/HabitCardOpen"
 import { baseFont } from "../../constants/fonts"
 import { useAuth } from "../../providers/auth"
 import { backgroundColor } from "../../constants/colors"
+import axios from "axios"
+import { useEffect } from "react"
 
 export default function HabitsPage() {
-    const {openCard, setOpenCard} = useAuth()
+    const {openCard, setOpenCard, token} = useAuth()
 
     function openHabitCard(){
         setOpenCard(true)
     }
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, { headers: { Authorization: `Bearer ${token}` } })
+    
+        promise.then((res) => {
+          //setSeats(res.data.seats)
+          //setDays(res.data.days)
+          console.log("res",res.data)
+          //console.log("verificar",res.data.seats)
+          /* setSession({
+            title: res.data.movie.title, 
+            posterURL: res.data.movie.posterURL,
+            time: res.data.name, 
+            weekday: res.data.day.weekday,
+            date: res.data.day.date
+        }) */
+        })
+    
+        promise.catch((err) => {
+          console.log(err.response.data)
+        })
+      },[])
+
     return (
         <>
             <NavBar/>
