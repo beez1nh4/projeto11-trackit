@@ -16,6 +16,9 @@ export default function SignUpPage(){
     setForm({...form, [name]: value})
   }
 
+  function navigateLogin(){
+    navigate("/")
+  }
   function signUp() {
     const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
     console.log(form)
@@ -23,7 +26,7 @@ export default function SignUpPage(){
 
     const promise = axios.post(URL, body)
 
-    promise.then((res) => {
+    promise.then(() => {
       navigate("/")
     })
 
@@ -66,7 +69,7 @@ export default function SignUpPage(){
             placeholder="foto"
             />
             <ButtonStart onClick={signUp}>Cadastrar</ButtonStart>
-            <LinkToClick>
+            <LinkToClick onClick={navigateLogin}>
             <p>Já tem uma conta? Faça login!</p>
             </LinkToClick>
             </IntroPageContainer>

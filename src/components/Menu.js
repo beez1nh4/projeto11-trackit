@@ -1,17 +1,28 @@
 import styled from "styled-components"
 import { white, basicColor } from "../constants/colors"
 import { baseFont } from "../constants/fonts"
+import { useNavigate } from "react-router-dom"
 
 export default function Menu() {
+    const navigate = useNavigate()
+    function navigateHabitsPage(){
+        navigate("/habitos")
+    }
+    function navigateHistoryPage(){
+        navigate("/historico")
+    }
+    function navigateTodayPage(){
+        navigate("/hoje")
+    }
     return(
         <>
             <MenuContainer>
-            <ButtonPage>Hábitos</ButtonPage>
-            <CircleContainer>
+            <ButtonPage onClick={navigateHabitsPage}>Hábitos</ButtonPage>
+            <CircleContainer onClick={navigateTodayPage}>
             <CircleButton>Hoje</CircleButton>
             <CircleProgress></CircleProgress>
             </CircleContainer>
-            <ButtonPage>Histórico</ButtonPage>
+            <ButtonPage onClick={navigateHistoryPage}>Histórico</ButtonPage>
             </MenuContainer>
         </>
     )
