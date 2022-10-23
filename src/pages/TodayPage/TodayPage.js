@@ -24,6 +24,9 @@ export default function TodayPage() {
 }
 
 const TodayPageContainer = styled.div`
+    box-sizing: border-box;
+    padding-bottom: 1080px;
+    background: ${backgroundColor};
     margin-top: 98px;
     margin-bottom: 70px;
     margin-left: 15px;

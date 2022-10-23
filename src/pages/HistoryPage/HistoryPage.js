@@ -1,7 +1,7 @@
 import NavBar from "../../components/NavBar"
 import Menu from "../../components/Menu"
 import styled from "styled-components"
-import { navBarColor, inputText } from "../../constants/colors"
+import { navBarColor, inputText, backgroundColor } from "../../constants/colors"
 import { baseFont } from "../../constants/fonts"
 
 export default function HistoryPage() {
@@ -18,6 +18,9 @@ export default function HistoryPage() {
 }
 
 const HistoryPageContainer = styled.div`
+    box-sizing: border-box;
+    padding-bottom: 1080px;
+    background: ${backgroundColor};
     display: flex;
     flex-direction: column;
     margin-top: 98px;

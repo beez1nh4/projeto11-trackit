@@ -4,6 +4,7 @@ import Menu from "../../components/Menu"
 import HabitCardOpen from "../../components/HabitCardOpen"
 import { baseFont } from "../../constants/fonts"
 import { useAuth } from "../../providers/auth"
+import { backgroundColor } from "../../constants/colors"
 
 export default function HabitsPage() {
     const {openCard, setOpenCard} = useAuth()
@@ -19,8 +20,8 @@ export default function HabitsPage() {
             <p>Meus hábitos</p>
             <button onClick={openHabitCard}>+</button>
             </TitleItem>
-            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             {openCard && <HabitCardOpen/>}
+            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </PageContainer>
             <Menu/>
         </>
@@ -28,7 +29,9 @@ export default function HabitsPage() {
 }
 
 const PageContainer = styled.div`
-    background: #E5E5E5;
+    box-sizing: border-box;
+    padding-bottom: 1080px;
+    background: ${backgroundColor};
     margin-top: 70px;
     margin-bottom: 70px;
     width: 100%;
@@ -44,6 +47,7 @@ const PageContainer = styled.div`
         line-height: 22px;
         color: #666666;
         margin-left: 17px;
+        
     }
 `
 

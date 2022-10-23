@@ -10,7 +10,7 @@ import { useAuth } from "../providers/auth";
 export default function HabitCardOpen() {
     const [form, setForm] = useState({ name: "" })
     const [load, setLoad] = useState(false)
-    const {days} = useAuth()
+    const {days, token} = useAuth()
     function fillForm(e) {
         if (!load){
         const { name, value } = e.target
@@ -19,8 +19,14 @@ export default function HabitCardOpen() {
 
     function saveHabit() {
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+        console.log(form)
         const body = {...form, days}
-        const promise = axios.post(URL, body)
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const promise = axios.post(URL, body, config)
         setLoad(true)
         promise.then((res) => {
           console.log(res.data.id)
@@ -39,8 +45,8 @@ export default function HabitCardOpen() {
             <CardContainer>
             <InputHabit 
             placeholder="nome do hábito"
-            name="habit"
-            value={form.habit}
+            name="name"
+            value={form.name}
             onChange={fillForm}
             type="text"
             disabled= {load && true}
@@ -66,6 +72,7 @@ const CardContainer = styled.div`
     height: 180px;
     background: ${white};
     border-radius: 5px;
+    margin-bottom: 29px;
 `
 const InputHabit = styled.input`
     box-sizing: border-box;
