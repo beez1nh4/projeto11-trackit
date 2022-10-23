@@ -5,6 +5,7 @@ import Menu from "../../components/Menu"
 import NavBar from "../../components/NavBar"
 import { baseFont } from "../../constants/fonts"
 import { backgroundColor, navBarColor } from "../../constants/colors"
+import TodayCard from "../../components/TodayCard"
 
 export default function TodayPage() {
     let thisDate = dayjs().locale('pt-br').format('dddd, DD/MM')
@@ -15,6 +16,7 @@ export default function TodayPage() {
             <TodayPageContainer>
             <Title>{formatDate}</Title>
             <Subtitle>Nenhum hábito concluído ainda</Subtitle>
+            <TodayCard></TodayCard>
             </TodayPageContainer>
             <Menu/>
         </>
@@ -22,8 +24,10 @@ export default function TodayPage() {
 }
 
 const TodayPageContainer = styled.div`
-    margin-top: 70px;
+    margin-top: 98px;
     margin-bottom: 70px;
+    margin-left: 15px;
+    margin-right: 22px;
     background: ${backgroundColor};
 `
 const Title = styled.p`
