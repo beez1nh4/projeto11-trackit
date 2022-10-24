@@ -10,7 +10,6 @@ import { AuthContext } from "./providers/auth";
 
 function App() {
   const {image} = React.useContext(AuthContext)
-  console.log(image)
   return (
     <>
     <GlobalStyle/>

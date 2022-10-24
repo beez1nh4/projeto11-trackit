@@ -5,19 +5,41 @@ import { baseFont } from "../constants/fonts"
 import ButtonDay from "./ButtonDay"
 import React from "react"
 import { Trash } from "styled-icons/ionicons-outline"
+import { useAuth } from "../providers/auth"
+import axios from "axios"
 
-export default function HabitCard() {
-    
+export default function HabitCard({habit, index}) {
+    const {setHabits, token} = useAuth()
+    console.log('habit', habit)
+    function deleteHabit(habit, id){
+        const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+        const body = habit
+        console.log(body)
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+        const promise = axios.delete(URL, config)
+
+        promise.then((res) => {
+        console.log("deletado")
+        })
+
+        promise.catch((err) => {
+        alert(err.response.data.message)
+        })
+    }
     return(
         <>
         <HabitCardContainer>
             <Align>
-            <Title>Ler 1 capítulo de livro</Title>
+            <Title>{habit.name}</Title>
             <Trash
             color={'#00000'}
             height="15px"
             width="15px"
-            onClick={() => alert('Hi!')}
+            onClick={() => deleteHabit(habit, habit.id)}
             />
             </Align>
             <ButtonsDays>

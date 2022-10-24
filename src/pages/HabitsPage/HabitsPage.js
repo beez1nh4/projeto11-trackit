@@ -10,7 +10,7 @@ import { useEffect } from "react"
 import HabitCard from "../../components/HabitCard"
 
 export default function HabitsPage() {
-    const {openCard, setOpenCard, token} = useAuth()
+    const {openCard, setOpenCard, token, habits, setHabits} = useAuth()
 
     function openHabitCard(){
         setOpenCard(true)
@@ -23,6 +23,8 @@ export default function HabitsPage() {
           //setSeats(res.data.seats)
           //setDays(res.data.days)
           console.log("res",res.data)
+          //console.log("res2",res.data[1].days)
+          setHabits(res.data)
           //console.log("verificar",res.data.seats)
           /* setSession({
             title: res.data.movie.title, 
@@ -46,7 +48,9 @@ export default function HabitsPage() {
             <p>Meus hábitos</p>
             <button onClick={openHabitCard}>+</button>
             </TitleItem>
-            <HabitCard></HabitCard>
+            {habits.map((habit, i) => (
+                    <HabitCard habit={habit} index={i} key={i}/>
+                ))}
             {openCard && <HabitCardOpen/>}
             <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </PageContainer>
