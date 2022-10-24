@@ -35,6 +35,7 @@ export default function HabitCardOpen() {
         promise.then((res) => {
           console.log(res.data.id)
           setLoad(false)
+          setOpenCard(false)
         })
     
         promise.catch((err) => {

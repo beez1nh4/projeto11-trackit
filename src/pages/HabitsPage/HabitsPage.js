@@ -20,7 +20,6 @@ export default function HabitsPage() {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, { headers: { Authorization: `Bearer ${token}` } })
     
         promise.then((res) => {
-          console.log("res",res.data)
           //console.log("res2",res.data[1].days)
           setHabits(res.data)
         })
@@ -28,7 +27,7 @@ export default function HabitsPage() {
         promise.catch((err) => {
           console.log(err.response.data)
         })
-      },[])
+      },[habits])
 
     return (
         <>

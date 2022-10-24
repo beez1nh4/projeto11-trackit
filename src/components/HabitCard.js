@@ -12,7 +12,6 @@ import { useState, useEffect } from "react"
 export default function HabitCard({habit, index}) {
     const {setHabits, token} = useAuth()
     
-    console.log('habitCard', habit.days)
     function deleteHabit(habit, id){
         if (window.confirm("Quer mesmo deletar o hábito?")) {
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`

@@ -59,6 +59,7 @@ const CircleContainer = styled.div`
     width: 91px;
     height: 91px;
     margin-bottom: 55px;
+    font-family: ${baseFont};
 `
 const CircleProgress = styled.div`
     position: absolute;
