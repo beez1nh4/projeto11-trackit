@@ -1,43 +1,47 @@
 import styled from "styled-components"
 import { baseFont } from "../constants/fonts"
-import { white, inputText } from "../constants/colors"
+import { white, inputText ,doneColor, undoneColor} from "../constants/colors"
 import React from 'react'
 import { Checkmark } from "styled-icons/evaicons-solid"
 import { useAuth } from "../providers/auth"
 import axios from "axios"
 
 export default function TodayCard({habit, id, index}) {
-    const {token} = useAuth()
-    function handleCheck(habit){
-        console.log("id do hab",id)
-        console.log(index)
+    const {token, doneHabits, setDoneHabits} = useAuth()
+    //console.log("id do hab",id)
+    //console.log("dayhabit",habit)
+    console.log("done", doneHabits)
+    function handleCheck(){
         if(!habit.done){
-            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/check`
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`
             const config = {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
             }
-            const promise = axios.post(URL, habit.id, config)
+            const promise = axios.post(URL, id, config)
 
             promise.then(() => {
             console.log("check")
+            setDoneHabits(...doneHabits, id)
             })
 
             promise.catch((err) => {
             alert(err.response.data.message)
             })
         } else{
-            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/uncheck`
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`
             const config = {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
             }
-            const promise = axios.post(URL, habit.id, config)
+            const promise = axios.post(URL, id, config)
 
             promise.then(() => {
             console.log("uncheck")
+            const newIds = doneHabits.filter((idInArray) => idInArray !== id)
+            setDoneHabits(newIds)
             })
 
             promise.catch((err) => {
@@ -54,7 +58,7 @@ export default function TodayCard({habit, id, index}) {
                 <Subtitle>Sequência atual: {habit.currentSequence} dias</Subtitle>
                 <Subtitle>Seu recorde: {habit.highestSequence} dias</Subtitle>
             </TextsContainer>
-            <CheckContainer onClick={() => handleCheck(habit)}>
+            <CheckContainer condition={doneHabits.includes(id)} onClick={() => handleCheck()}>
             <Checkmark
             color={white}
             height="300px"
@@ -103,7 +107,7 @@ const CheckContainer = styled.div`
     box-sizing: border-box;
     width: 69px;
     height: 69px;
-    background: #EBEBEB;
+    background: ${props => props.condition ? doneColor : undoneColor};
     border: 1px solid #E7E7E7;
     border-radius: 5px;
     display: flex;

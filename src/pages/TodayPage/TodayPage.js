@@ -13,7 +13,7 @@ import axios from "axios"
 export default function TodayPage() {
     let thisDate = dayjs().locale('pt-br').format('dddd, DD/MM')
     let formatDate = thisDate[0].toUpperCase() + thisDate.substring(1)
-    const {token, dayHabits, setDayHabits} = useAuth()
+    const {token, dayHabits, setDayHabits, doneHabits, setDoneHabits} = useAuth()
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, { headers: { Authorization: `Bearer ${token}` } })
@@ -21,13 +21,18 @@ export default function TodayPage() {
         promise.then((res) => {
           console.log("res",res.data)
           setDayHabits(res.data)
+          for (let i = 0; i< res.data.length; i++){
+            if (res.data[i].done === true){
+                setDoneHabits([...doneHabits, res.data[i].id])
+            }
+          }
         })
     
         promise.catch((err) => {
           console.log(err.response.data)
         })
       },[])
-
+    
     return(
         <>
             <NavBar/>
