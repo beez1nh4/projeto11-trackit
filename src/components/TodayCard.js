@@ -56,8 +56,8 @@ export default function TodayCard({habit, renderTodayPage}) {
         <TodayCardComponent>
             <TextsContainer>
                 <Title>{habit.name}</Title>
-                <Subtitle condition={habit.done}><span>Sequência atual: </span>{habit.currentSequence} dias</Subtitle>
-                <Subtitle condition={habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0}><span>Seu recorde:</span> {habit.highestSequence} dias</Subtitle>
+                <Subtitle condition={habit.done}><span>Sequência atual: </span>{habit.currentSequence} {habit.currentSequence===1 ? "dia" : "dias"}</Subtitle>
+                <Subtitle condition={habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0}><span>Seu recorde:</span> {habit.highestSequence} {habit.highestSequence===1 ? "dia" : "dias"}</Subtitle>
             </TextsContainer>
             <CheckContainer condition={habit.done} onClick={() => handleCheck()}>
             <Checkmark

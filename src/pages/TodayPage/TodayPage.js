@@ -4,17 +4,19 @@ import styled from "styled-components"
 import Menu from "../../components/Menu"
 import NavBar from "../../components/NavBar"
 import { baseFont } from "../../constants/fonts"
-import { backgroundColor, navBarColor , percentageColor, doneColor} from "../../constants/colors"
+import { basicColor, backgroundColor, navBarColor , percentageColor, doneColor} from "../../constants/colors"
 import TodayCard from "../../components/TodayCard"
 import { useAuth } from "../../providers/auth"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { ThreeDots } from "react-loader-spinner"
 
 export default function TodayPage() {
     let thisDate = dayjs().locale('pt-br').format('dddd, DD/MM')
     let formatDate = thisDate[0].toUpperCase() + thisDate.substring(1)
     const {token, doneHabits, setDoneHabits, setPercentage} = useAuth()
     const [dayHabits, setDayHabits] = useState([])
+    const [load, setLoad] = useState(true)
 
     function renderTodayPage(){
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, { headers: { Authorization: `Bearer ${token}` } })
@@ -22,6 +24,7 @@ export default function TodayPage() {
         promise.then((res) => {
           //console.log("res",res.data)
           setDayHabits(res.data)
+          setLoad(false)
           for (let i = 0; i< res.data.length; i++){
             if (res.data[i].done === true && !doneHabits.includes(res.data[i].id)){
                 setDoneHabits([...doneHabits, res.data[i].id])
@@ -38,6 +41,22 @@ export default function TodayPage() {
       },[])
 
     setPercentage(doneHabits.length/dayHabits.length*100)
+
+    if (load) {
+        return(
+        <AlignDots>
+        <ThreeDots 
+        height="100"    
+        width="100" 
+        radius="9"
+        color={basicColor} 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+        />
+        </AlignDots>
+    )}
     return(
         <>
             <NavBar/>
@@ -101,4 +120,12 @@ const SubtitleDone = styled.div`
     margin-bottom: 28px;
     margin-left: 15px;
     margin-right: 22px;
+`
+const AlignDots = styled.div`
+    width: 100%;
+    height: 1080px;
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
+    background-color: ${backgroundColor};
 `

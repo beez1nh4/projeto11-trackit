@@ -35,7 +35,7 @@ export default function LoginPage() {
           console.log(res.data.token)
           setLoad(false)
           setImage(res.data.image)
-          navigate("/habitos")
+          navigate("/hoje")
         })
     
         promise.catch((err) => {
@@ -44,6 +44,7 @@ export default function LoginPage() {
         })
     
       }
+
     return(
         <>
         <IntroPageContainer>

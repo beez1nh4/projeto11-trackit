@@ -6,12 +6,13 @@ import { baseFont } from "../../constants/fonts"
 import { useAuth } from "../../providers/auth"
 import { backgroundColor, white, navBarColor , basicColor, inputText} from "../../constants/colors"
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import HabitCard from "../../components/HabitCard"
+import { ThreeDots } from "react-loader-spinner"
 
 export default function HabitsPage() {
     const {openCard, setOpenCard, token, habits, setHabits} = useAuth()
-
+    const [load, setLoad] = useState(true)
     function openHabitCard(){
         setOpenCard(true)
     }
@@ -22,12 +23,29 @@ export default function HabitsPage() {
         promise.then((res) => {
           //console.log("res2",res.data[1].days)
           setHabits(res.data)
+          setLoad(false)
         })
     
         promise.catch((err) => {
           console.log(err.response.data)
         })
       },[habits])
+    
+      if (load) {
+        return(
+        <AlignDots>
+        <ThreeDots 
+        height="100"    
+        width="100" 
+        radius="9"
+        color={basicColor} 
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+        />
+        </AlignDots>
+    )}
 
     return (
         <>
@@ -107,4 +125,12 @@ const TitleItem = styled.div`
         color: ${white};
         border: none;
     }
+`
+const AlignDots = styled.div`
+    width: 100%;
+    height: 1080px;
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
+    background-color: ${backgroundColor};
 `

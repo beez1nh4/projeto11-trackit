@@ -6,9 +6,13 @@ import { useAuth } from "../providers/auth"
 export default function ButtonDay({letter, index}) {
     const {days, setDays} = useAuth()
     function fillDays(i){
-        if (!days.includes(i))
-        {setDays([...days, i])
-        console.log([...days, i]) }
+        if (!days.includes(i)){
+        setDays([...days, i].sort())
+        //console.log([...days, i]) 
+        } else{
+            const newIds = days.filter((idInArray) => idInArray !== i)
+            setDays(newIds)
+        }
     }
 
     return (
