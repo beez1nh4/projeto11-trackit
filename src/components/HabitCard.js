@@ -10,13 +10,15 @@ import axios from "axios"
 
 
 export default function HabitCard({habit, index}) {
-    const {token} = useAuth()
+    const {token, doneHabits, setDoneHabits} = useAuth()
     
     function deleteHabit(habit, id){
         if (window.confirm("Quer mesmo deletar o hábito?")) {
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
         const body = habit
         console.log(body)
+        const newIds = doneHabits.filter((idInArray) => idInArray !== id)
+            setDoneHabits(newIds)
         const config = {
             headers: {
                 "Authorization": `Bearer ${token}`

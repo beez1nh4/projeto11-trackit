@@ -26,7 +26,6 @@ export default function TodayPage() {
           console.log("done",doneHabits)
           setDayHabits(res.data)
           setLoad(false)
-          setDoneHabits([])
           for (let i = 0; i< res.data.length; i++){
             if (res.data[i].done === true && !doneHabits.includes(res.data[i].id)){
                 setDoneHabits([...doneHabits, res.data[i].id])
