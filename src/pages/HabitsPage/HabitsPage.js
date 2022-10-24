@@ -4,7 +4,7 @@ import Menu from "../../components/Menu"
 import HabitCardOpen from "../../components/HabitCardOpen"
 import { baseFont } from "../../constants/fonts"
 import { useAuth } from "../../providers/auth"
-import { backgroundColor } from "../../constants/colors"
+import { backgroundColor, white, navBarColor , basicColor, inputText} from "../../constants/colors"
 import axios from "axios"
 import { useEffect } from "react"
 
@@ -70,7 +70,7 @@ const PageContainer = styled.div`
         font-weight: 400;
         font-size: 17.976px;
         line-height: 22px;
-        color: #666666;
+        color: ${inputText};
         margin-left: 17px;
         
     }
@@ -89,13 +89,13 @@ const TitleItem = styled.div`
         font-weight: 400;
         font-size: 22.976px;
         line-height: 29px;
-        color: #126BA5;
+        color: ${navBarColor};
         margin-left: 17px;
     } & button{
         width: 40px;
         height: 35px;
         left: 317px;
-        background: #52B6FF;
+        background: ${basicColor};
         border-radius: 4.63636px;
         margin-right: 18px;
 
@@ -105,7 +105,7 @@ const TitleItem = styled.div`
         font-size: 26.976px;
         line-height: 34px;
         text-align: center;
-        color: #FFFFFF;
+        color: ${white};
         border: none;
     }
 `
