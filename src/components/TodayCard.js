@@ -55,8 +55,8 @@ export default function TodayCard({habit, id, index}) {
         <TodayCardComponent>
             <TextsContainer>
                 <Title>{habit.name}</Title>
-                <Subtitle>Sequência atual: {habit.currentSequence} dias</Subtitle>
-                <Subtitle>Seu recorde: {habit.highestSequence} dias</Subtitle>
+                <Subtitle condition={doneHabits.includes(id)}><span>Sequência atual: </span>{habit.currentSequence} dias</Subtitle>
+                <Subtitle condition={habit.currentSequence === habit.highestSequence}><span>Seu recorde:</span> {habit.highestSequence} dias</Subtitle>
             </TextsContainer>
             <CheckContainer condition={doneHabits.includes(id)} onClick={() => handleCheck()}>
             <Checkmark
@@ -101,7 +101,10 @@ const Subtitle = styled.div`
     font-weight: 400;
     font-size: 12.976px;
     line-height: 16px;
-    color: ${inputText};
+    color: ${props => props.condition ? doneColor : inputText};
+    & span{
+        color: ${inputText};
+    }
 `
 const CheckContainer = styled.div`
     box-sizing: border-box;

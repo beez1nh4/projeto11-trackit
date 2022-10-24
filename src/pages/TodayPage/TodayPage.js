@@ -27,18 +27,20 @@ export default function TodayPage() {
             }
           }
         })
-    
+        
         promise.catch((err) => {
           console.log(err.response.data)
         })
       },[])
-    
+    console.log("done",doneHabits.length)
+    console.log("day",dayHabits.length)
     return(
         <>
             <NavBar/>
             <TodayPageContainer>
             <Title>{formatDate}</Title>
             <Subtitle>Nenhum hábito concluído ainda</Subtitle>
+            <Subtitle>{doneHabits.length/dayHabits.length*100}% dos hábitos concluídos</Subtitle>
             <TodayCards>
             {dayHabits.map((dayHabit, i) => (
                     <TodayCard habit={dayHabit} id={dayHabit.id} index={i} key={i}/>
