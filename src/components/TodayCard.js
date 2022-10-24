@@ -6,7 +6,7 @@ import { Checkmark } from "styled-icons/evaicons-solid"
 import { useAuth } from "../providers/auth"
 import axios from "axios"
 
-export default function TodayCard({habit, id, index}) {
+export default function TodayCard({habit, id, renderTodayPage}) {
     const {token, doneHabits, setDoneHabits} = useAuth()
     //console.log("id do hab",id)
     //console.log("dayhabit",habit)
@@ -24,6 +24,7 @@ export default function TodayCard({habit, id, index}) {
             promise.then(() => {
             console.log("check")
             setDoneHabits(...doneHabits, id)
+            renderTodayPage()
             })
 
             promise.catch((err) => {
@@ -42,6 +43,7 @@ export default function TodayCard({habit, id, index}) {
             console.log("uncheck")
             const newIds = doneHabits.filter((idInArray) => idInArray !== id)
             setDoneHabits(newIds)
+            renderTodayPage()
             })
 
             promise.catch((err) => {
@@ -55,10 +57,10 @@ export default function TodayCard({habit, id, index}) {
         <TodayCardComponent>
             <TextsContainer>
                 <Title>{habit.name}</Title>
-                <Subtitle condition={doneHabits.includes(id)}><span>Sequência atual: </span>{habit.currentSequence} dias</Subtitle>
+                <Subtitle condition={habit.done}><span>Sequência atual: </span>{habit.currentSequence} dias</Subtitle>
                 <Subtitle condition={habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0}><span>Seu recorde:</span> {habit.highestSequence} dias</Subtitle>
             </TextsContainer>
-            <CheckContainer condition={doneHabits.includes(id)} onClick={() => handleCheck()}>
+            <CheckContainer condition={habit.done} onClick={() => handleCheck()}>
             <Checkmark
             color={white}
             height="300px"

@@ -7,19 +7,20 @@ import { baseFont } from "../../constants/fonts"
 import { backgroundColor, navBarColor , percentageColor, doneColor} from "../../constants/colors"
 import TodayCard from "../../components/TodayCard"
 import { useAuth } from "../../providers/auth"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function TodayPage() {
     let thisDate = dayjs().locale('pt-br').format('dddd, DD/MM')
     let formatDate = thisDate[0].toUpperCase() + thisDate.substring(1)
-    const {token, dayHabits, setDayHabits, doneHabits, setDoneHabits} = useAuth()
+    const {token, doneHabits, setDoneHabits, setPercentage} = useAuth()
+    const [dayHabits, setDayHabits] = useState([])
 
-    useEffect(() => {
+    function renderTodayPage(){
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, { headers: { Authorization: `Bearer ${token}` } })
     
         promise.then((res) => {
-          console.log("res",res.data)
+          //console.log("res",res.data)
           setDayHabits(res.data)
           for (let i = 0; i< res.data.length; i++){
             if (res.data[i].done === true && !doneHabits.includes(res.data[i].id)){
@@ -31,9 +32,13 @@ export default function TodayPage() {
         promise.catch((err) => {
           console.log(err.response.data)
         })
+    }
+    useEffect(() => {
+        renderTodayPage()
       },[])
     console.log("done",doneHabits.length)
     console.log("day",dayHabits.length)
+    setPercentage(doneHabits.length/dayHabits.length*100)
     return(
         <>
             <NavBar/>
@@ -41,11 +46,11 @@ export default function TodayPage() {
             <Title>{formatDate}</Title>
             {doneHabits.length/dayHabits.length*100 === 0 || doneHabits.length === 0 ?
             <Subtitle>Nenhum hábito concluído ainda</Subtitle> :
-            <SubtitleDone>{doneHabits.length/dayHabits.length*100}% dos hábitos concluídos</SubtitleDone>
+            <SubtitleDone>{(doneHabits.length/dayHabits.length*100).toFixed(0)}% dos hábitos concluídos</SubtitleDone>
             }     
             <TodayCards>
-            {dayHabits.map((dayHabit, i) => (
-                    <TodayCard habit={dayHabit} id={dayHabit.id} index={i} key={i}/>
+            {dayHabits.map((dayHabit) => (
+                    <TodayCard habit={dayHabit} id={dayHabit.id} renderTodayPage={renderTodayPage} key={dayHabit.id}/>
                 ))}
             </TodayCards>
             </TodayPageContainer>

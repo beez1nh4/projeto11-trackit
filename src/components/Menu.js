@@ -8,7 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export default function Menu() {
     const navigate = useNavigate()
-    const {dayHabits, doneHabits} = useAuth()
+    const {percentage} = useAuth()
     function navigateHabitsPage(){
         navigate("/habitos")
     }
@@ -24,7 +24,7 @@ export default function Menu() {
             <ButtonPage onClick={navigateHabitsPage}>Hábitos</ButtonPage>
             <CircleContainer onClick={navigateTodayPage}>
             <CircularProgressbar
-            value={50}
+            value={percentage}
             text={`Hoje`}
             background
             backgroundPadding={6}
