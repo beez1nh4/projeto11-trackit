@@ -14,7 +14,7 @@ import { ThreeDots } from "react-loader-spinner"
 export default function TodayPage() {
     let thisDate = dayjs().locale('pt-br').format('dddd, DD/MM')
     let formatDate = thisDate[0].toUpperCase() + thisDate.substring(1)
-    const {token, doneHabits, setDoneHabits, setPercentage} = useAuth()
+    const {token, doneHabits, setDoneHabits, setPercentage, percentage} = useAuth()
     const [dayHabits, setDayHabits] = useState([])
     const [load, setLoad] = useState(true)
 
@@ -23,6 +23,7 @@ export default function TodayPage() {
     
         promise.then((res) => {
           //console.log("res",res.data)
+          console.log("done",doneHabits)
           setDayHabits(res.data)
           setLoad(false)
           for (let i = 0; i< res.data.length; i++){
@@ -60,11 +61,11 @@ export default function TodayPage() {
     return(
         <>
             <NavBar/>
-            <TodayPageContainer>
+            <TodayPageContainer data-identifier="today-infos">
             <Title>{formatDate}</Title>
             {doneHabits.length/dayHabits.length*100 === 0 || doneHabits.length === 0 ?
             <Subtitle>Nenhum hábito concluído ainda</Subtitle> :
-            <SubtitleDone>{(doneHabits.length/dayHabits.length*100).toFixed(0)}% dos hábitos concluídos</SubtitleDone>
+            <SubtitleDone>{(percentage).toFixed(0)}% dos hábitos concluídos</SubtitleDone>
             }     
             <TodayCards>
             {dayHabits.map((dayHabit) => (

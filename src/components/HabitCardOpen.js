@@ -12,9 +12,7 @@ export default function HabitCardOpen() {
     const [form, setForm] = useState({ name: "" })
     const [load, setLoad] = useState(false)
     const {days, setDays, token, setOpenCard} = useAuth()
-    function cancelCard(){
-        setOpenCard(false)
-    }
+    
     function fillForm(e) {
         if (!load){
         const { name, value } = e.target
@@ -45,7 +43,10 @@ export default function HabitCardOpen() {
         })
     
       }
-    
+      function cancelCard(){
+        setOpenCard(false)
+        setForm({...form})
+    }
     return(
         <>
             <CardContainer>
@@ -57,6 +58,7 @@ export default function HabitCardOpen() {
             type="text"
             disabled= {load && true}
             load={load}
+            data-identifier="input-habit-name"
             ></InputHabit>
             <ButtonsDays>
             {daysInitials.map((d, i) => (
@@ -64,8 +66,8 @@ export default function HabitCardOpen() {
                 ))}
             </ButtonsDays>
             <AlignButtons>
-                <CancelTitle onClick={cancelCard}load={load}>Cancelar</CancelTitle>
-                <ButtonSave load={load} onClick={saveHabit}>
+                <CancelTitle onClick={cancelCard} load={load} data-identifier="cancel-habit-create-btn">Cancelar</CancelTitle>
+                <ButtonSave data-identifier="save-habit-create-btn" load={load} onClick={saveHabit}>
                     {load ?
                     <ThreeDots 
                     height="51" 

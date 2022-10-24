@@ -7,16 +7,18 @@ import React from "react"
 import { Trash } from "styled-icons/ionicons-outline"
 import { useAuth } from "../providers/auth"
 import axios from "axios"
-import { useState, useEffect } from "react"
+
 
 export default function HabitCard({habit, index}) {
-    const {setHabits, token} = useAuth()
+    const {token, doneHabits, setDoneHabits} = useAuth()
     
     function deleteHabit(habit, id){
         if (window.confirm("Quer mesmo deletar o hábito?")) {
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
         const body = habit
         console.log(body)
+        const newIds = doneHabits.filter((idInArray) => idInArray !== id)
+            setDoneHabits(newIds)
         const config = {
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -36,8 +38,9 @@ export default function HabitCard({habit, index}) {
         <>
         <HabitCardContainer>
             <Align>
-            <Title>{habit.name}</Title>
+            <Title data-identifier="habit-name">{habit.name}</Title>
             <Trash
+            data-identifier="delete-habit-btn"
             color={'#00000'}
             height="15px"
             width="15px"
@@ -62,6 +65,7 @@ const HabitCardContainer = styled.div`
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
 `
 const Align = styled.div`
     display: flex;
@@ -75,6 +79,9 @@ const Title = styled.div`
     line-height: 25px;
     color: ${inputText};
     margin-bottom: 8px;
+    overflow: hidden;
+    width: 285px;
+    text-overflow: ellipsis;
 
 `
 const ButtonsDays = styled.div`

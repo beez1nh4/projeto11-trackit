@@ -53,10 +53,10 @@ export default function HabitsPage() {
             <PageContainer>
             <TitleItem>
             <p>Meus hábitos</p>
-            <button onClick={openHabitCard}>+</button>
+            <button onClick={openHabitCard} data-identifier="create-habit-btn">+</button>
             </TitleItem>
             <Align>
-            {habits.length===0 ? <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> :habits.map((habit, i) => (
+            {habits.length===0 ? <p data-identifier="no-habit-message">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> :habits.map((habit, i) => (
                     <HabitCard habit={habit} index={i} key={i}/>
                 ))}
             {openCard && <HabitCardOpen/>}

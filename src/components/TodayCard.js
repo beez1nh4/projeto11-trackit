@@ -39,10 +39,11 @@ export default function TodayCard({habit, renderTodayPage}) {
             const promise = axios.post(URL, habit.id, config)
 
             promise.then(() => {
-            console.log("uncheck")
+            
             const newIds = doneHabits.filter((idInArray) => idInArray !== habit.id)
             setDoneHabits(newIds)
             renderTodayPage()
+            
             })
 
             promise.catch((err) => {
@@ -53,13 +54,13 @@ export default function TodayCard({habit, renderTodayPage}) {
 
     return(
         <>
-        <TodayCardComponent>
+        <TodayCardComponent >
             <TextsContainer>
                 <Title>{habit.name}</Title>
                 <Subtitle condition={habit.done}><span>Sequência atual: </span>{habit.currentSequence} {habit.currentSequence===1 ? "dia" : "dias"}</Subtitle>
                 <Subtitle condition={habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0}><span>Seu recorde:</span> {habit.highestSequence} {habit.highestSequence===1 ? "dia" : "dias"}</Subtitle>
             </TextsContainer>
-            <CheckContainer condition={habit.done} onClick={() => handleCheck()}>
+            <CheckContainer data-identifier="done-habit-btn" condition={habit.done} onClick={() => handleCheck()}>
             <Checkmark
             color={white}
             height="30px"
