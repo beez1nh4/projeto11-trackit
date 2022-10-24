@@ -9,6 +9,7 @@ export const AuthProvider = (props) => {
   const [days, setDays] = useState([])
   const [openCard, setOpenCard] = useState(false)
   const [habits, setHabits] = useState([])
+  const [dayHabits, setDayHabits] = useState([])
 
   return (
     <AuthContext.Provider value={
@@ -21,7 +22,9 @@ export const AuthProvider = (props) => {
       openCard, 
       setOpenCard,
       habits,
-      setHabits
+      setHabits,
+      dayHabits,
+      setDayHabits
       }}>
       {props.children}
     </AuthContext.Provider>
