@@ -8,8 +8,6 @@ import axios from "axios"
 
 export default function TodayCard({habit, renderTodayPage}) {
     const {token, doneHabits, setDoneHabits} = useAuth()
-    
-    //console.log("dayhabit",habit)
     //console.log("done", doneHabits)
     function handleCheck(){
         if(!habit.done){
@@ -25,6 +23,7 @@ export default function TodayCard({habit, renderTodayPage}) {
             console.log("check")
             setDoneHabits(...doneHabits, habit.id)
             renderTodayPage()
+            console.log("dayhabit",habit)
             })
 
             promise.catch((err) => {
@@ -63,8 +62,8 @@ export default function TodayCard({habit, renderTodayPage}) {
             <CheckContainer condition={habit.done} onClick={() => handleCheck()}>
             <Checkmark
             color={white}
-            height="300px"
-            width="300px"
+            height="30px"
+            width="30px"
             ></Checkmark>
            </CheckContainer>
         </TodayCardComponent>
