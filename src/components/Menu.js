@@ -21,7 +21,7 @@ export default function Menu() {
     return(
         <>
             <MenuContainer>
-            <ButtonPage onClick={navigateHabitsPage}>Hábitos</ButtonPage>
+            <ButtonPage data-identifier="habit-page-action" onClick={navigateHabitsPage}>Hábitos</ButtonPage>
             <CircleContainer onClick={navigateTodayPage}>
             <CircularProgressbar
             value={percentage}
@@ -36,7 +36,7 @@ export default function Menu() {
             })}
             />
             </CircleContainer>
-            <ButtonPage onClick={navigateHistoryPage}>Histórico</ButtonPage>
+            <ButtonPage data-identifier="historic-page-action" onClick={navigateHistoryPage}>Histórico</ButtonPage>
             </MenuContainer>
         </>
     )
@@ -61,7 +61,7 @@ const CircleContainer = styled.div`
     margin-bottom: 55px;
     font-family: ${baseFont};
 `
-const CircleProgress = styled.div`
+/* const CircleProgress = styled.div`
     position: absolute;
     width: 65px;
     height: 65px;
@@ -88,7 +88,7 @@ const CircleButton = styled.button`
     text-align: center;
 
     color: #FFFFFF;
-`
+` */
 
 const ButtonPage = styled.button`
     width: 68px;

@@ -59,6 +59,7 @@ export default function SignUpPage(){
             placeholder="email"
             disabled= {load && true}
             load={load}
+            data-identifier="input-email"
             />
             <Input
             name="password"
@@ -68,6 +69,7 @@ export default function SignUpPage(){
             placeholder="senha"
             disabled= {load && true}
             load={load}
+            data-identifier="input-password"
             />
             <Input
             name="name"
@@ -77,6 +79,7 @@ export default function SignUpPage(){
             placeholder="nome"
             disabled= {load && true}
             load={load}
+            data-identifier="input-name"
             />
             <Input
             name="image"
@@ -86,6 +89,7 @@ export default function SignUpPage(){
             placeholder="foto"
             disabled= {load && true}
             load={load}
+            data-identifier="input-photo"
             />
             <ButtonStart load={load} onClick={signUp}>
             {load ?
@@ -103,7 +107,7 @@ export default function SignUpPage(){
             "Cadastrar"
             }
             </ButtonStart>
-            <LinkToClick onClick={navigateLogin}>
+            <LinkToClick data-identifier="back-to-login-action" onClick={navigateLogin}>
             <p>Já tem uma conta? Faça login!</p>
             </LinkToClick>
             </IntroPageContainer>

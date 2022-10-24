@@ -13,7 +13,7 @@ import { white } from "../../constants/colors"
 export default function LoginPage() {
     const navigate = useNavigate()
     const [form, setForm] = useState({ email: "", password: "" })
-    const {token, setToken, setImage} = useAuth()
+    const {setToken, setImage} = useAuth()
     const [load, setLoad] = useState(false)
     function fillForm(e) {
         if (!load){
@@ -57,6 +57,7 @@ export default function LoginPage() {
         placeholder="email"
         disabled= {load && true}
         load={load}
+        data-identifier="input-email"
         />
         <Input
         name="password"
@@ -66,8 +67,9 @@ export default function LoginPage() {
         placeholder="senha"
         disabled= {load && true}
         load={load}
+        data-identifier="input-password"
         />
-        <ButtonStart load={load} onClick={login}>{load ?
+        <ButtonStart load={load} onClick={login} data-identifier="login-btn">{load ?
         <ThreeDots 
         height="51" 
         width="51" 
@@ -81,7 +83,7 @@ export default function LoginPage() {
         :
         "Entrar"
         }</ButtonStart>
-        <LinkToClick onClick={navigateSignUp}>
+        <LinkToClick data-identifier="sign-up-action" onClick={navigateSignUp}>
             <p>Não tem uma conta? Cadastre-se!</p>
         </LinkToClick>
         </IntroPageContainer>

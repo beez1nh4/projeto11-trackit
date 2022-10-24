@@ -17,7 +17,7 @@ export default function ButtonDay({letter, index}) {
 
     return (
         
-        <ButtonDayComponent condition={days.includes(index)} onClick={() => fillDays(index)} >{letter}</ButtonDayComponent>
+        <ButtonDayComponent data-identifier="week-day-btn" condition={days.includes(index)} onClick={() => fillDays(index)} >{letter}</ButtonDayComponent>
         
     )
 }

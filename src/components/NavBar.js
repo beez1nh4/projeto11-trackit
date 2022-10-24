@@ -14,7 +14,7 @@ export default function NavBar() {
         <>
             <NavBarItem>
                 <Logo onClick={navigateHabitsPage}>TrackIt</Logo>
-                <User src={image} alt="user" />
+                <User data-identifier="avatar" src={image} alt="user" />
             </NavBarItem>
         </>
     )

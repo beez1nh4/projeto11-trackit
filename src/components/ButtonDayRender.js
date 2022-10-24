@@ -1,8 +1,6 @@
 import styled from "styled-components"
 import { baseFont } from "../constants/fonts"
 import { borderColor, white , unclickedColor} from "../constants/colors"
-import { useAuth } from "../providers/auth"
-import { useState } from "react"
 
 export default function ButtonDayRender({specificDays, letter, index}) {
     return (
