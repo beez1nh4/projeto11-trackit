@@ -23,9 +23,10 @@ export default function TodayPage() {
     
         promise.then((res) => {
           //console.log("res",res.data)
-          console.log("done",doneHabits)
+          //console.log("done",doneHabits)
           setDayHabits(res.data)
           setLoad(false)
+          
           for (let i = 0; i< res.data.length; i++){
             if (res.data[i].done === true && !doneHabits.includes(res.data[i].id)){
                 setDoneHabits([...doneHabits, res.data[i].id])

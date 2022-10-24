@@ -21,7 +21,7 @@ export default function HabitCardOpen() {
 
     function saveHabit() {
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
-        console.log(form)
+        //console.log(form)
         const body = {...form, days}
         const config = {
             headers: {
@@ -31,7 +31,7 @@ export default function HabitCardOpen() {
         const promise = axios.post(URL, body, config)
         setLoad(true)
         promise.then((res) => {
-          console.log(res.data.id)
+          //console.log(res.data.id)
           setLoad(false)
           setOpenCard(false)
           setDays([])

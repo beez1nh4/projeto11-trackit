@@ -20,10 +20,10 @@ export default function TodayCard({habit, renderTodayPage}) {
             const promise = axios.post(URL, habit.id, config)
 
             promise.then(() => {
-            console.log("check")
+            //console.log("check")
             setDoneHabits(...doneHabits, habit.id)
             renderTodayPage()
-            console.log("dayhabit",habit)
+            //console.log("dayhabit",habit)
             })
 
             promise.catch((err) => {

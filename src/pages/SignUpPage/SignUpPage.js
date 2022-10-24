@@ -21,7 +21,8 @@ export default function SignUpPage(){
     {const {name, value} = e.target
     setForm({...form, [name]: value})
     setImage(form.image)
-    console.log(form.image)}
+    //console.log(form.image)
+  }
   }
 
   function navigateLogin(){
@@ -29,7 +30,7 @@ export default function SignUpPage(){
   }
   function signUp() {
     const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
-    console.log(form)
+    //console.log(form)
     const body = {...form}
     setLoad(true)
 
