@@ -7,6 +7,7 @@ import { useAuth } from "../../providers/auth"
 import { backgroundColor, white, navBarColor , basicColor, inputText} from "../../constants/colors"
 import axios from "axios"
 import { useEffect } from "react"
+import HabitCard from "../../components/HabitCard"
 
 export default function HabitsPage() {
     const {openCard, setOpenCard, token} = useAuth()
@@ -45,6 +46,7 @@ export default function HabitsPage() {
             <p>Meus hábitos</p>
             <button onClick={openHabitCard}>+</button>
             </TitleItem>
+            <HabitCard></HabitCard>
             {openCard && <HabitCardOpen/>}
             <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
             </PageContainer>

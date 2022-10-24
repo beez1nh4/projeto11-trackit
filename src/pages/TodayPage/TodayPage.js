@@ -27,10 +27,8 @@ const TodayPageContainer = styled.div`
     box-sizing: border-box;
     padding-bottom: 1080px;
     background: ${backgroundColor};
-    margin-top: 98px;
+    margin-top: 70px;
     margin-bottom: 70px;
-    margin-left: 15px;
-    margin-right: 22px;
     background: ${backgroundColor};
 `
 const Title = styled.p`

@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { baseFont } from "../constants/fonts"
 import { white, inputText } from "../constants/colors"
+import React from 'react'
+import { Checkmark } from "styled-icons/evaicons-solid"
 
 export default function TodayCard() {
     return(
@@ -12,7 +14,13 @@ export default function TodayCard() {
                 <Subtitle>Seu recorde: 5 dias</Subtitle>
             </TextsContainer>
             <CheckContainer>
-            ✔️
+            <Checkmark
+            color={white}
+            rotate
+            height="300px"
+            width="300px"
+            onClick={() => alert('Hi!')}
+            ></Checkmark>
            </CheckContainer>
         </TodayCardComponent>
         </>
