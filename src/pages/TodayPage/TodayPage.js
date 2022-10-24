@@ -36,8 +36,7 @@ export default function TodayPage() {
     useEffect(() => {
         renderTodayPage()
       },[])
-    console.log("done",doneHabits.length)
-    console.log("day",dayHabits.length)
+
     setPercentage(doneHabits.length/dayHabits.length*100)
     return(
         <>
@@ -50,7 +49,7 @@ export default function TodayPage() {
             }     
             <TodayCards>
             {dayHabits.map((dayHabit) => (
-                    <TodayCard habit={dayHabit} id={dayHabit.id} renderTodayPage={renderTodayPage} key={dayHabit.id}/>
+                    <TodayCard habit={dayHabit} renderTodayPage={renderTodayPage} key={dayHabit.id}/>
                 ))}
             </TodayCards>
             </TodayPageContainer>

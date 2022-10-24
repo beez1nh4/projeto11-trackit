@@ -11,7 +11,7 @@ import { ThreeDots } from "react-loader-spinner"
 export default function HabitCardOpen() {
     const [form, setForm] = useState({ name: "" })
     const [load, setLoad] = useState(false)
-    const {days, token, setOpenCard} = useAuth()
+    const {days, setDays, token, setOpenCard} = useAuth()
     function cancelCard(){
         setOpenCard(false)
     }
@@ -36,6 +36,7 @@ export default function HabitCardOpen() {
           console.log(res.data.id)
           setLoad(false)
           setOpenCard(false)
+          setDays([])
         })
     
         promise.catch((err) => {

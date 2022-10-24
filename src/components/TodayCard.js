@@ -6,24 +6,24 @@ import { Checkmark } from "styled-icons/evaicons-solid"
 import { useAuth } from "../providers/auth"
 import axios from "axios"
 
-export default function TodayCard({habit, id, renderTodayPage}) {
+export default function TodayCard({habit, renderTodayPage}) {
     const {token, doneHabits, setDoneHabits} = useAuth()
-    //console.log("id do hab",id)
+    
     //console.log("dayhabit",habit)
-    console.log("done", doneHabits)
+    //console.log("done", doneHabits)
     function handleCheck(){
         if(!habit.done){
-            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/check`
             const config = {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
             }
-            const promise = axios.post(URL, id, config)
+            const promise = axios.post(URL, habit.id, config)
 
             promise.then(() => {
             console.log("check")
-            setDoneHabits(...doneHabits, id)
+            setDoneHabits(...doneHabits, habit.id)
             renderTodayPage()
             })
 
@@ -31,17 +31,17 @@ export default function TodayCard({habit, id, renderTodayPage}) {
             alert(err.response.data.message)
             })
         } else{
-            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/uncheck`
             const config = {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
             }
-            const promise = axios.post(URL, id, config)
+            const promise = axios.post(URL, habit.id, config)
 
             promise.then(() => {
             console.log("uncheck")
-            const newIds = doneHabits.filter((idInArray) => idInArray !== id)
+            const newIds = doneHabits.filter((idInArray) => idInArray !== habit.id)
             setDoneHabits(newIds)
             renderTodayPage()
             })
