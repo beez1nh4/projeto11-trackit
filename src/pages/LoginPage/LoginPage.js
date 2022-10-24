@@ -13,7 +13,7 @@ import { white } from "../../constants/colors"
 export default function LoginPage() {
     const navigate = useNavigate()
     const [form, setForm] = useState({ email: "", password: "" })
-    const {token, setToken} = useAuth()
+    const {token, setToken, setImage} = useAuth()
     const [load, setLoad] = useState(false)
     function fillForm(e) {
         if (!load){
@@ -34,6 +34,7 @@ export default function LoginPage() {
           setToken(res.data.token)
           console.log(res.data.token)
           setLoad(false)
+          setImage(res.data.image)
           navigate("/habitos")
         })
     

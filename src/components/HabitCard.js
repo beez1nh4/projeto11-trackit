@@ -14,6 +14,7 @@ export default function HabitCard({habit, index}) {
     
     console.log('habitCard', habit.days)
     function deleteHabit(habit, id){
+        if (window.confirm("Quer mesmo deletar o hábito?")) {
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
         const body = habit
         console.log(body)
@@ -31,7 +32,7 @@ export default function HabitCard({habit, index}) {
         promise.catch((err) => {
         alert(err.response.data.message)
         })
-    }
+    }}
     return(
         <>
         <HabitCardContainer>
