@@ -2,9 +2,13 @@ import styled from "styled-components"
 import { white, basicColor } from "../constants/colors"
 import { baseFont } from "../constants/fonts"
 import { useNavigate } from "react-router-dom"
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { useAuth } from "../providers/auth";
+import 'react-circular-progressbar/dist/styles.css';
 
 export default function Menu() {
     const navigate = useNavigate()
+    const {dayHabits, doneHabits} = useAuth()
     function navigateHabitsPage(){
         navigate("/habitos")
     }
@@ -19,8 +23,18 @@ export default function Menu() {
             <MenuContainer>
             <ButtonPage onClick={navigateHabitsPage}>Hábitos</ButtonPage>
             <CircleContainer onClick={navigateTodayPage}>
-            <CircleButton>Hoje</CircleButton>
-            <CircleProgress></CircleProgress>
+            <CircularProgressbar
+            value={50}
+            text={`Hoje`}
+            background
+            backgroundPadding={6}
+            styles={buildStyles({
+            backgroundColor: basicColor,
+            textColor: white,
+            pathColor: white,
+            trailColor: "transparent"
+            })}
+            />
             </CircleContainer>
             <ButtonPage onClick={navigateHistoryPage}>Histórico</ButtonPage>
             </MenuContainer>
@@ -42,7 +56,9 @@ const MenuContainer = styled.div`
 `
 const CircleContainer = styled.div`
     position: relative;
-
+    width: 91px;
+    height: 91px;
+    margin-bottom: 55px;
 `
 const CircleProgress = styled.div`
     position: absolute;
