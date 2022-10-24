@@ -27,7 +27,7 @@ export default function HabitsPage() {
         })
     
         promise.catch((err) => {
-          console.log(err.response.data)
+            alert(err.response.data)
         })
       },[habits])
     

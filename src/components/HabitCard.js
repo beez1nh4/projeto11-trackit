@@ -16,7 +16,7 @@ export default function HabitCard({habit, index}) {
         if (window.confirm("Quer mesmo deletar o hábito?")) {
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
         const body = habit
-        console.log(body)
+    
         const newIds = doneHabits.filter((idInArray) => idInArray !== id)
             setDoneHabits(newIds)
         const config = {
@@ -27,7 +27,7 @@ export default function HabitCard({habit, index}) {
         const promise = axios.delete(URL, config)
 
         promise.then((res) => {
-        console.log("deletado")
+        //console.log("deletado")
         })
 
         promise.catch((err) => {
