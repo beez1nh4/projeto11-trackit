@@ -74,7 +74,7 @@ const Title = styled.div`
     color: ${navBarColor};
     margin-left: 15px;
     margin-right: 22px;
-    margin-top: 50px;
+    padding-top: 28px;
 `
 const Subtitle = styled.div`
     font-family: ${baseFont};
