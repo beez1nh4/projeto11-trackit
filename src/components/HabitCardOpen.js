@@ -11,7 +11,10 @@ import { ThreeDots } from "react-loader-spinner"
 export default function HabitCardOpen() {
     const [form, setForm] = useState({ name: "" })
     const [load, setLoad] = useState(false)
-    const {days, token} = useAuth()
+    const {days, token, setOpenCard} = useAuth()
+    function cancelCard(){
+        setOpenCard(false)
+    }
     function fillForm(e) {
         if (!load){
         const { name, value } = e.target
@@ -59,7 +62,7 @@ export default function HabitCardOpen() {
                 ))}
             </ButtonsDays>
             <AlignButtons>
-                <CancelTitle load={load}>Cancelar</CancelTitle>
+                <CancelTitle onClick={cancelCard}load={load}>Cancelar</CancelTitle>
                 <ButtonSave load={load} onClick={saveHabit}>
                     {load ?
                     <ThreeDots 

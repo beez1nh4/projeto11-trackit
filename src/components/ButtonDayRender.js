@@ -2,18 +2,12 @@ import styled from "styled-components"
 import { baseFont } from "../constants/fonts"
 import { borderColor, white , unclickedColor} from "../constants/colors"
 import { useAuth } from "../providers/auth"
+import { useState } from "react"
 
-export default function ButtonDay({letter, index}) {
-    const {days, setDays} = useAuth()
-    function fillDays(i){
-        if (!days.includes(i))
-        {setDays([...days, i])
-        console.log([...days, i]) }
-    }
-
+export default function ButtonDayRender({specificDays, letter, index}) {
     return (
         
-        <ButtonDayComponent condition={days.includes(index)} onClick={() => fillDays(index)} >{letter}</ButtonDayComponent>
+        <ButtonDayComponent condition={specificDays.includes(index)}>{letter}</ButtonDayComponent>
         
     )
 }

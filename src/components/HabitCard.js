@@ -2,15 +2,17 @@ import styled from "styled-components"
 import { daysInitials } from "../constants/days"
 import { white, inputText } from "../constants/colors"
 import { baseFont } from "../constants/fonts"
-import ButtonDay from "./ButtonDay"
+import ButtonDayRender from "./ButtonDayRender"
 import React from "react"
 import { Trash } from "styled-icons/ionicons-outline"
 import { useAuth } from "../providers/auth"
 import axios from "axios"
+import { useState, useEffect } from "react"
 
 export default function HabitCard({habit, index}) {
     const {setHabits, token} = useAuth()
-    console.log('habit', habit)
+    
+    console.log('habitCard', habit.days)
     function deleteHabit(habit, id){
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
         const body = habit
@@ -44,7 +46,7 @@ export default function HabitCard({habit, index}) {
             </Align>
             <ButtonsDays>
             {daysInitials.map((d, i) => (
-                    <ButtonDay letter={d} index={i} key={i}/>
+                    <ButtonDayRender specificDays={habit.days} letter={d} index={i} key={i}/>
                 ))}
             </ButtonsDays>
         </HabitCardContainer>
