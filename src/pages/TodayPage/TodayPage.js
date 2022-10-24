@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Menu from "../../components/Menu"
 import NavBar from "../../components/NavBar"
 import { baseFont } from "../../constants/fonts"
-import { backgroundColor, navBarColor } from "../../constants/colors"
+import { backgroundColor, navBarColor , percentageColor, doneColor} from "../../constants/colors"
 import TodayCard from "../../components/TodayCard"
 import { useAuth } from "../../providers/auth"
 import { useEffect } from "react"
@@ -22,7 +22,7 @@ export default function TodayPage() {
           console.log("res",res.data)
           setDayHabits(res.data)
           for (let i = 0; i< res.data.length; i++){
-            if (res.data[i].done === true){
+            if (res.data[i].done === true && !doneHabits.includes(res.data[i].id)){
                 setDoneHabits([...doneHabits, res.data[i].id])
             }
           }
@@ -39,8 +39,10 @@ export default function TodayPage() {
             <NavBar/>
             <TodayPageContainer>
             <Title>{formatDate}</Title>
-            <Subtitle>Nenhum hábito concluído ainda</Subtitle>
-            <Subtitle>{doneHabits.length/dayHabits.length*100}% dos hábitos concluídos</Subtitle>
+            {doneHabits.length/dayHabits.length*100 === 0 || doneHabits.length/dayHabits.length*100 === NaN ?
+            <Subtitle>Nenhum hábito concluído ainda</Subtitle> :
+            <SubtitleDone>{doneHabits.length/dayHabits.length*100}% dos hábitos concluídos</SubtitleDone>
+            }     
             <TodayCards>
             {dayHabits.map((dayHabit, i) => (
                     <TodayCard habit={dayHabit} id={dayHabit.id} index={i} key={i}/>
@@ -76,12 +78,23 @@ const Subtitle = styled.div`
     font-weight: 400;
     font-size: 17.976px;
     line-height: 22px;
-    color: #BABABA;
+    color: ${percentageColor};
     margin-bottom: 28px;
     margin-left: 15px;
     margin-right: 22px;
 `
 const TodayCards = styled.div`
+    margin-left: 15px;
+    margin-right: 22px;
+`
+const SubtitleDone = styled.div`
+    font-family: ${baseFont};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17.976px;
+    line-height: 22px;
+    color: ${doneColor};
+    margin-bottom: 28px;
     margin-left: 15px;
     margin-right: 22px;
 `
