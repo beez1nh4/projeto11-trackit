@@ -62,6 +62,7 @@ const HabitCardContainer = styled.div`
     background: ${white};
     border-radius: 5px;
     padding: 15px;
+    margin-bottom: 10px;
 `
 const Align = styled.div`
     display: flex;

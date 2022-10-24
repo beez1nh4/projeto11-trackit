@@ -20,19 +20,9 @@ export default function HabitsPage() {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`, { headers: { Authorization: `Bearer ${token}` } })
     
         promise.then((res) => {
-          //setSeats(res.data.seats)
-          //setDays(res.data.days)
           console.log("res",res.data)
           //console.log("res2",res.data[1].days)
           setHabits(res.data)
-          //console.log("verificar",res.data.seats)
-          /* setSession({
-            title: res.data.movie.title, 
-            posterURL: res.data.movie.posterURL,
-            time: res.data.name, 
-            weekday: res.data.day.weekday,
-            date: res.data.day.date
-        }) */
         })
     
         promise.catch((err) => {
@@ -48,11 +38,12 @@ export default function HabitsPage() {
             <p>Meus hábitos</p>
             <button onClick={openHabitCard}>+</button>
             </TitleItem>
-            {habits.map((habit, i) => (
+            <Align>
+            {habits.length===0 ? <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> :habits.map((habit, i) => (
                     <HabitCard habit={habit} index={i} key={i}/>
                 ))}
             {openCard && <HabitCardOpen/>}
-            <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+            </Align>
             </PageContainer>
             <Menu/>
         </>
@@ -81,7 +72,10 @@ const PageContainer = styled.div`
         
     }
 `
-
+const Align = styled.div`
+    margin-left: 15px;
+    margin-right: 22px;
+`
 const TitleItem = styled.div`
     display: flex;
     justify-content: space-between;

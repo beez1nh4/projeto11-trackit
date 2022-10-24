@@ -19,18 +19,8 @@ export default function TodayPage() {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today`, { headers: { Authorization: `Bearer ${token}` } })
     
         promise.then((res) => {
-          //setSeats(res.data.seats)
-          //setDays(res.data.days)
           console.log("res",res.data)
           setDayHabits(res.data)
-          //console.log("verificar",res.data.seats)
-          /* setSession({
-            title: res.data.movie.title, 
-            posterURL: res.data.movie.posterURL,
-            time: res.data.name, 
-            weekday: res.data.day.weekday,
-            date: res.data.day.date
-        }) */
         })
     
         promise.catch((err) => {
@@ -44,9 +34,11 @@ export default function TodayPage() {
             <TodayPageContainer>
             <Title>{formatDate}</Title>
             <Subtitle>Nenhum hábito concluído ainda</Subtitle>
+            <TodayCards>
             {dayHabits.map((dayHabit, i) => (
-                    <TodayCard habit={dayHabit} index={i} key={i}/>
+                    <TodayCard habit={dayHabit} id={dayHabit.id} index={i} key={i}/>
                 ))}
+            </TodayCards>
             </TodayPageContainer>
             <Menu/>
         </>
@@ -59,17 +51,19 @@ const TodayPageContainer = styled.div`
     background: ${backgroundColor};
     margin-top: 70px;
     margin-bottom: 70px;
-    background: ${backgroundColor};
 `
-const Title = styled.p`
+const Title = styled.div`
     font-family: ${baseFont};
     font-style: normal;
     font-weight: 400;
     font-size: 22.976px;
     line-height: 29px;
     color: ${navBarColor};
+    margin-left: 15px;
+    margin-right: 22px;
+    margin-top: 50px;
 `
-const Subtitle = styled.p`
+const Subtitle = styled.div`
     font-family: ${baseFont};
     font-style: normal;
     font-weight: 400;
@@ -77,4 +71,10 @@ const Subtitle = styled.p`
     line-height: 22px;
     color: #BABABA;
     margin-bottom: 28px;
+    margin-left: 15px;
+    margin-right: 22px;
+`
+const TodayCards = styled.div`
+    margin-left: 15px;
+    margin-right: 22px;
 `

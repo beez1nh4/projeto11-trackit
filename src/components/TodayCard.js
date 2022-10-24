@@ -6,10 +6,10 @@ import { Checkmark } from "styled-icons/evaicons-solid"
 import { useAuth } from "../providers/auth"
 import axios from "axios"
 
-export default function TodayCard({habit, index}) {
+export default function TodayCard({habit, id, index}) {
     const {token} = useAuth()
     function handleCheck(habit){
-        console.log("id do hab",habit)
+        console.log("id do hab",id)
         console.log(index)
         if(!habit.done){
             const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/check`
@@ -75,6 +75,8 @@ const TodayCardComponent = styled.div`
     padding: 15px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
 `
 const TextsContainer = styled.div`
     display: flex;
@@ -107,6 +109,5 @@ const CheckContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 35px;
     font-size: 39px;
 `

@@ -23,10 +23,8 @@ const HistoryPageContainer = styled.div`
     background: ${backgroundColor};
     display: flex;
     flex-direction: column;
-    margin-top: 98px;
+    margin-top: 70px;
     margin-bottom: 70px;
-    margin-left: 15px;
-    margin-right: 22px;
 `
 
 const Title = styled.div`
@@ -36,6 +34,9 @@ const Title = styled.div`
     font-size: 22.976px;
     line-height: 29px;
     color: ${navBarColor};
+    margin-left: 15px;
+    margin-right: 22px;
+    margin-top: 28px;
 `
 
 const Subtitle = styled.div`
@@ -45,5 +46,7 @@ const Subtitle = styled.div`
     font-size: 17.976px;
     line-height: 22px;
     color: ${inputText};
+    margin-left: 15px;
+    margin-right: 22px;
 
 `
