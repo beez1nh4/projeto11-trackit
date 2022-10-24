@@ -19,4 +19,5 @@ export const ButtonStart = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: ${(props) => props.load ? "0.7" : "1"};
 `

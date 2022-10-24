@@ -54,6 +54,7 @@ export default function LoginPage() {
         type="text"
         placeholder="email"
         disabled= {load && true}
+        load={load}
         />
         <Input
         name="password"
@@ -62,8 +63,9 @@ export default function LoginPage() {
         type="password"
         placeholder="senha"
         disabled= {load && true}
+        load={load}
         />
-        <ButtonStart onClick={login}>{load ?
+        <ButtonStart load={load} onClick={login}>{load ?
         <ThreeDots 
         height="51" 
         width="51" 

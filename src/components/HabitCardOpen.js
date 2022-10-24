@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { white, unclickedColor, inputText, basicColor} from "../constants/colors";
+import { white, unclickedColor, inputText, basicColor, loadInputColor} from "../constants/colors";
 import { baseFont } from "../constants/fonts";
 import { daysInitials } from "../constants/days";
 import { useState } from "react";
 import axios from "axios";
 import ButtonDay from "./ButtonDay";
 import { useAuth } from "../providers/auth";
+import { ThreeDots } from "react-loader-spinner"
 
 export default function HabitCardOpen() {
     const [form, setForm] = useState({ name: "" })
@@ -50,6 +51,7 @@ export default function HabitCardOpen() {
             onChange={fillForm}
             type="text"
             disabled= {load && true}
+            load={load}
             ></InputHabit>
             <ButtonsDays>
             {daysInitials.map((d, i) => (
@@ -57,8 +59,23 @@ export default function HabitCardOpen() {
                 ))}
             </ButtonsDays>
             <AlignButtons>
-                <p>Cancelar</p>
-                <button onClick={saveHabit}>Salvar</button>
+                <CancelTitle load={load}>Cancelar</CancelTitle>
+                <ButtonSave load={load} onClick={saveHabit}>
+                    {load ?
+                    <ThreeDots 
+                    height="51" 
+                    width="43" 
+                    radius="9"
+                    color={white} 
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                     /> :
+                    "Salvar"
+                    }
+
+                </ButtonSave>
             </AlignButtons>
             </CardContainer>
         </>
@@ -88,6 +105,7 @@ const InputHabit = styled.input`
     border: 1px solid ${unclickedColor};
     border-radius: 5px;
     margin-bottom: 8px;
+    background-color: ${(props) => props.load && unclickedColor };
 
     ::placeholder{
         font-family: ${baseFont};
@@ -95,7 +113,7 @@ const InputHabit = styled.input`
         font-weight: 400;
         font-size: 19.976px;
         line-height: 25px;
-        color: ${unclickedColor};
+        color: ${(props) => props.load ? loadInputColor : unclickedColor };
     }
 `
 const ButtonsDays = styled.div`
@@ -106,28 +124,33 @@ const AlignButtons = styled.div`
     display: flex;
     margin-left: 129px;
     align-items: center;
-    & p {
-        font-family: ${baseFont};
-        font-style: normal;
-        font-weight: 400;
-        font-size: 15.976px;
-        line-height: 20px;
-        text-align: center;
-        color: ${basicColor};
-        margin-right: 23px;
-    } & button{
-        width: 84px;
-        height: 35px;
-        font-family: ${baseFont};
-        font-style: normal;
-        font-weight: 400;
-        font-size: 15.976px;
-        line-height: 20px;
-        text-align: center;
-        color: ${white};
-        border-radius: 4.64px;
-        background-color: ${basicColor};
-        border: 0;
-    }
-
+`
+const ButtonSave = styled.button`
+    width: 84px;
+    height: 35px;
+    font-family: ${baseFont};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15.976px;
+    line-height: 20px;
+    text-align: center;
+    color: ${white};
+    border-radius: 4.64px;
+    background-color: ${basicColor};
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: ${(props) => props.load ? "0.7" : "1"};
+`
+const CancelTitle = styled.div`
+    font-family: ${baseFont};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15.976px;
+    line-height: 20px;
+    text-align: center;
+    color: ${basicColor};
+    margin-right: 23px;
+    opacity: ${(props) => props.load ? "0.7" : "1"};
 `

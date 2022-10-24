@@ -58,6 +58,7 @@ export default function SignUpPage(){
             type="text"
             placeholder="email"
             disabled= {load && true}
+            load={load}
             />
             <Input
             name="password"
@@ -66,6 +67,7 @@ export default function SignUpPage(){
             type="password"
             placeholder="senha"
             disabled= {load && true}
+            load={load}
             />
             <Input
             name="name"
@@ -74,6 +76,7 @@ export default function SignUpPage(){
             type="text"
             placeholder="nome"
             disabled= {load && true}
+            load={load}
             />
             <Input
             name="image"
@@ -82,8 +85,9 @@ export default function SignUpPage(){
             type="text"
             placeholder="foto"
             disabled= {load && true}
+            load={load}
             />
-            <ButtonStart onClick={signUp}>
+            <ButtonStart load={load} onClick={signUp}>
             {load ?
             <ThreeDots 
             height="51" 

@@ -44,8 +44,8 @@ export default function TodayPage() {
             <TodayPageContainer>
             <Title>{formatDate}</Title>
             <Subtitle>Nenhum hábito concluído ainda</Subtitle>
-            {dayHabits.map((habit, i) => (
-                    <TodayCard habit={habit} index={i} key={i}/>
+            {dayHabits.map((dayHabit, i) => (
+                    <TodayCard habit={dayHabit} index={i} key={i}/>
                 ))}
             </TodayPageContainer>
             <Menu/>

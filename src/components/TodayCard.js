@@ -8,7 +8,9 @@ import axios from "axios"
 
 export default function TodayCard({habit, index}) {
     const {token} = useAuth()
-    function handleCheck(){
+    function handleCheck(habit){
+        console.log("id do hab",habit)
+        console.log(index)
         if(!habit.done){
             const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/check`
             const config = {
@@ -25,6 +27,22 @@ export default function TodayCard({habit, index}) {
             promise.catch((err) => {
             alert(err.response.data.message)
             })
+        } else{
+            const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/uncheck`
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            const promise = axios.post(URL, habit.id, config)
+
+            promise.then(() => {
+            console.log("uncheck")
+            })
+
+            promise.catch((err) => {
+            alert(err.response.data.message)
+            })
         }
     }
 
@@ -36,10 +54,9 @@ export default function TodayCard({habit, index}) {
                 <Subtitle>Sequência atual: {habit.currentSequence} dias</Subtitle>
                 <Subtitle>Seu recorde: {habit.highestSequence} dias</Subtitle>
             </TextsContainer>
-            <CheckContainer onClick={handleCheck}>
+            <CheckContainer onClick={() => handleCheck(habit)}>
             <Checkmark
             color={white}
-            rotate
             height="300px"
             width="300px"
             ></Checkmark>

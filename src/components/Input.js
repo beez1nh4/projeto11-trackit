@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { borderColor, placeholderColor, white } from "../constants/colors";
+import { borderColor, placeholderColor, white , loadInputColor, unclickedColor} from "../constants/colors";
 import { baseFont } from "../constants/fonts";
 export const Input = styled.input`
     box-sizing: border-box;
@@ -10,6 +10,7 @@ export const Input = styled.input`
     border-radius: 5px;
     margin-bottom: 6px;
     padding: 11px;
+    background-color: ${(props) => props.load && unclickedColor };
 
     ::placeholder{
         font-family: ${baseFont};
@@ -17,6 +18,6 @@ export const Input = styled.input`
         font-weight: 400;
         font-size: 19.976px;
         line-height: 25px;
-        color: ${placeholderColor};
+        color: ${(props) => props.load ? loadInputColor : placeholderColor };
     }
 `
