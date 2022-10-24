@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { baseFont } from "../constants/fonts"
-import { white, inputText ,doneColor, undoneColor} from "../constants/colors"
+import { white, inputText ,doneColor, undoneColor, borderColor2} from "../constants/colors"
 import React from 'react'
 import { Checkmark } from "styled-icons/evaicons-solid"
 import { useAuth } from "../providers/auth"
@@ -113,7 +113,7 @@ const CheckContainer = styled.div`
     width: 69px;
     height: 69px;
     background: ${props => props.condition ? doneColor : undoneColor};
-    border: 1px solid #E7E7E7;
+    border: 1px solid ${borderColor2};
     border-radius: 5px;
     display: flex;
     justify-content: center;
