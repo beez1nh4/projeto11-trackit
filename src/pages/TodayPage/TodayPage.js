@@ -39,7 +39,7 @@ export default function TodayPage() {
             <NavBar/>
             <TodayPageContainer>
             <Title>{formatDate}</Title>
-            {doneHabits.length/dayHabits.length*100 === 0 || doneHabits.length/dayHabits.length*100 === NaN ?
+            {doneHabits.length/dayHabits.length*100 === 0 || doneHabits.length === 0 ?
             <Subtitle>Nenhum hábito concluído ainda</Subtitle> :
             <SubtitleDone>{doneHabits.length/dayHabits.length*100}% dos hábitos concluídos</SubtitleDone>
             }     

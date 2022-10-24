@@ -56,7 +56,7 @@ export default function TodayCard({habit, id, index}) {
             <TextsContainer>
                 <Title>{habit.name}</Title>
                 <Subtitle condition={doneHabits.includes(id)}><span>Sequência atual: </span>{habit.currentSequence} dias</Subtitle>
-                <Subtitle condition={habit.currentSequence === habit.highestSequence}><span>Seu recorde:</span> {habit.highestSequence} dias</Subtitle>
+                <Subtitle condition={habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0}><span>Seu recorde:</span> {habit.highestSequence} dias</Subtitle>
             </TextsContainer>
             <CheckContainer condition={doneHabits.includes(id)} onClick={() => handleCheck()}>
             <Checkmark
